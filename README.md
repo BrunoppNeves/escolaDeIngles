@@ -1,3 +1,3 @@
 # escolaDeIngles
 
-Development of the backend of the orm da alura course, in which we developed an English language school
+Development of the backend of the orm course in alura, in which we develop an english language school
