@@ -1,16 +1,11 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const routes = require("./routes");
 
 const app = express();
-
-app.use(bodyParser.json());
-
 const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+routes(app);
 
-app.listen(3000, () => {
-  console.log(`rodando na porta ${3000}`);
+app.listen(port, () => {
+  console.log(`rodando na porta ${port}`);
 });
