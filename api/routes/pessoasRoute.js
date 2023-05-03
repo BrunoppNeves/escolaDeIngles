@@ -4,5 +4,9 @@ const PessoaController = require("../controllers/PessoaController");
 const router = Router();
 
 router.get("/pessoas", PessoaController.getAll);
+router.get("/pessoas/:id", PessoaController.getOne);
+router.post("/pessoas", PessoaController.criaPessoa);
+router.put("/pessoas/:id", PessoaController.atualizaPessoa);
+router.delete("/pessoas/:id", PessoaController.deletaPessoa);
 
 module.exports = router;
