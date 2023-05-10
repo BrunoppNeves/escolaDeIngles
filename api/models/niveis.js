@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Niveis.init(
     {
-      desc_nivel: DataTypes.STRING,
+      descr_nivel: DataTypes.STRING,
     },
     {
       sequelize,
