@@ -1,15 +1,16 @@
 const db = require("../models/index");
-class TurmaController {
-  static async pegaTodasAsTurmas(req, res) {
+
+module.exports = {
+  async pegaTodasAsTurmas(req, res) {
     try {
       const todasAsTurmas = await db.Turmas.findAll();
       return res.status(200).json(todasAsTurmas);
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async pegaUmaTurma(req, res) {
+  async pegaUmaTurma(req, res) {
     const { id } = req.params;
     try {
       const umaTurma = db.Turmas.findOne({ where: { id: Number(id) } });
@@ -17,9 +18,9 @@ class TurmaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async criaTurma(req, res) {
+  async criaTurma(req, res) {
     const turma = req.body;
     try {
       const novaTurma = await db.Turmas.create(turma);
@@ -27,9 +28,9 @@ class TurmaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async atualizaTurma(req, res) {
+  async atualizaTurma(req, res) {
     const turmaAtualizada = req.body;
     const { id } = req.params;
     try {
@@ -39,9 +40,9 @@ class TurmaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async apagaTurma(req, res) {
+  async apagaTurma(req, res) {
     const { id } = req.params;
     try {
       await db.Turmas.destroy({ where: { id: Number(id) } });
@@ -49,7 +50,5 @@ class TurmaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
-}
-
-module.exports = TurmaController;
+  },
+};

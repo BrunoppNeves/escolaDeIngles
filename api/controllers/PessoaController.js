@@ -1,17 +1,17 @@
 const db = require("../models");
 
-class PessoaController {
+module.exports = {
   //busca todas as pessoas
-  static async getAll(req, res) {
+  async getAll(req, res) {
     try {
       const allPeople = await db.Pessoas.findAll();
       return res.status(200).json(allPeople);
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
   //busca uma pessoa
-  static async getOne(req, res) {
+  async getOne(req, res) {
     const { id } = req.params;
     try {
       const umaPessoa = await db.Pessoas.findOne({ where: { id: Number(id) } });
@@ -19,9 +19,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
   //cria uma nova pessoa
-  static async criaPessoa(req, res) {
+  async criaPessoa(req, res) {
     const novaPessoa = req.body;
     try {
       const novaPessoaCriada = await db.Pessoas.create(novaPessoa);
@@ -29,9 +29,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
   //atualiza um resgistro
-  static async atualizaPessoa(req, res) {
+  async atualizaPessoa(req, res) {
     const editaPessoa = req.body;
     const { id } = req.params;
     try {
@@ -41,9 +41,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
   //deleta pessoa
-  static async deletaPessoa(req, res) {
+  async deletaPessoa(req, res) {
     const { id } = req.params;
     try {
       await db.Pessoas.destroy({ where: { id: Number(id) } });
@@ -51,11 +51,11 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
   //  ------------------------------------->  MATRICULAS  <-------------------------------------
 
-  static async pegaUmaMatricula(req, res) {
+  async pegaUmaMatricula(req, res) {
     const { estudanteId, matriculaId } = req.params;
     try {
       const umaMatricula = await db.Matriculas.findOne({ where: { id: Number(matriculaId), estudante_id: Number(estudanteId) } });
@@ -63,9 +63,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async criaMatricula(req, res) {
+  async criaMatricula(req, res) {
     const { estudanteId } = req.params;
     const novaMatricula = { ...req.body, estudante_id: Number(estudanteId) };
     try {
@@ -74,9 +74,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async atualizaMatricula(req, res) {
+  async atualizaMatricula(req, res) {
     const { estudanteId, matriculaId } = req.params;
     const novasInfos = req.body;
     try {
@@ -86,9 +86,9 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
-  static async deletaMatricula(req, res) {
+  async deletaMatricula(req, res) {
     const { id } = req.params;
     try {
       await db.Matriculas.destroy({ where: { id: Number(id) } });
@@ -96,7 +96,5 @@ class PessoaController {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
-}
-
-module.exports = PessoaController;
+  },
+};
